@@ -6,7 +6,8 @@ Add repo source to .gitignore
 
 Clone
 
-    git clone --bare https://github.com/akotov/.dotfiles_config $HOME/.dotfiles_config
+    git clone --bare git@github.com:akotov/.dotfiles_config.git $HOME/.dotfiles_config
+    dotfiles config --local status.showUntrackedFiles no
 
 
 Add this alias to your .zshrc or .bashrc file.
@@ -17,10 +18,14 @@ Checkout
 
     dotfiles checkout
 
-mkdir -p .config-backup && \
-config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-xargs -I{} mv {} .config-backup/{}
+Backup previous
 
+    mkdir -p .dotfiles_config_backup && \
+    dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | while read file; do
+        dir=$(dirname ".dotfiles_config_backup/$file")
+        mkdir -p "$dir"
+        mv "$file" ".dotfiles_config_backup/$file"
+    done
 
 # To **initialize** the dotfiles_config you need to do this
 
