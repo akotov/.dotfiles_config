@@ -7,12 +7,19 @@ Add repo source to .gitignore
 Clone
 
     git clone --bare git@github.com:akotov/.dotfiles_config.git $HOME/.dotfiles_config
-    dotfiles config --local status.showUntrackedFiles no
 
 
 Add this alias to your .zshrc or .bashrc file.
 
     alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles_config/ --work-tree=$HOME'
+
+...
+
+    echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $HOME/.bashrc
+
+Do not show untracked files
+
+    dotfiles config --local status.showUntrackedFiles no
 
 Checkout
 
