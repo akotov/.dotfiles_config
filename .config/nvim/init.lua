@@ -594,6 +594,7 @@ require('lazy').setup({
         },
 
         ruff = {},
+        bashls = {},
       }
 
       -- Ensure the servers and tools above are installed
