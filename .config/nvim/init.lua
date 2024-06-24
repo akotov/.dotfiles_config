@@ -370,7 +370,7 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
 
-      -- See `:help telescope.builtin`
+      -- See `:help telescope.builtinj
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
@@ -917,3 +917,85 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+
+-----------
+-- PERSONAL
+--
+vim.g.quickui_border_style = 3
+vim.g.quickui_color_scheme = 'gruvbox'
+vim.cmd [[call quickui#menu#install('&File', [
+            \ [ "&New File\tCtrl+n", 'echo 0' ],
+            \ [ "&Open File\t(F3)", 'echo 1' ],
+            \ [ "&Close", 'echo 2' ],
+            \ [ "--", '' ],
+            \ [ "&Save\tCtrl+s", 'echo 3'],
+            \ [ "Save &As", 'echo 4' ],
+            \ [ "Save All", 'echo 5' ],
+            \ [ "--", '' ],
+            \ [ "E&xit\tAlt+x", 'echo 6' ],
+            \ ])
+]]
+vim.cmd [[
+  call quickui#menu#install('&Edit', [
+            \ [ '&Copy', 'echo "define copy"', 'help 1' ],
+            \ [ '&Paste', 'echo 2', 'help 2' ],
+            \ [ '&Find', 'echo 3', 'help 3' ],
+            \ ])
+]]
+-- vim.cmd [[
+--  call quickui#menu#install('&Search', [
+--             \ [ 'In &File', ':/'],
+--            \ [ '&Remove Highlight', ':noh'],
+--            \ [ 'In &Project', 'echo "undefined"' ],
+--            \ ])
+--]]
+vim.cmd [[
+  call quickui#menu#install(
+    \ '&Debugger',
+    \ [
+      \ ['Start &Debug', ':lua require("dap").continue()'],
+      \ ['DAP UI: &Toggle', ':lua require("dapui").toggle()'],
+      \ ['--',''],
+      \ ['DAP UI: &Setup', ':lua require("dapui").setup()'],
+      \ ['DAP UI: &Open', ':lua require("dapui").open()'],
+      \ ['DAP UI: &Close', ':lua require("dapui").close()'],
+    \ ]
+  \ )
+]]
+vim.cmd [[
+  call quickui#menu#install('&Window', [
+      \ ['Open &Neotree', ':Neotree'],
+      \ ['&Vertical split', ':vsp'],
+      \ ['Ho&rizontal split', ':sp'],
+      \ ['--', ''],
+      \ ['Open &Terminal Right', ':botright vnew | terminal'],
+      \ ['Open Terminal &Down', ':belowright new | terminal'],
+      \ ])
+]]
+vim.cmd [[
+  call quickui#menu#install('&Tabs', [
+      \ ['&New', ':tabnew'],
+      \ ['Nex&t', ':tabnext'],
+      \ ['&Previous', ':tabprev'],
+      \ ['&Close', ':tabc'],
+      \ ])
+]]
+vim.cmd [[
+  call quickui#menu#install('Nvim.&Utils', [
+      \ ['Re&source Neovim config', ':source %'],
+      \ ])
+]]
+vim.cmd [[
+  call quickui#menu#install('Hel&p', [
+			\ ["&Cheatsheet", 'help index', ''],
+			\ ['T&ips', 'help tips', ''],
+			\ ['--',''],
+			\ ["&Tutorial", 'help tutor', ''],
+			\ ['&Quick Reference', 'help quickref', ''],
+			\ ['&Summary', 'help summary', ''],
+      \ ['--', ''],
+      \ ['&Exit', ':qa!']
+			\ ], 10000)
+]]
+vim.api.nvim_set_keymap('n', '<leader>m', ':call quickui#menu#open()<CR>', { noremap = true })
