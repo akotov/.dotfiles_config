@@ -593,7 +593,11 @@ require('lazy').setup({
           },
         },
 
+        -- Python
+        pyright = {},
         ruff = {},
+
+        -- BASH
         bashls = {},
       }
 
