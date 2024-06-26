@@ -999,3 +999,11 @@ vim.cmd [[
 			\ ], 10000)
 ]]
 vim.api.nvim_set_keymap('n', '<leader>m', ':call quickui#menu#open()<CR>', { noremap = true })
+
+--
+vim.opt.updatetime = 10000 -- Set updatetime to 10000ms (10 seconds)
+vim.cmd [[ autocmd CursorHoldI * stopinsert ]]
+vim.cmd [[
+  autocmd CursorHoldI * stopinsert
+  autocmd CursorHoldI * lua vim.api.nvim_echo({{'Switched to Normal mode due to inactivity in Insert mode', 'Highlight'}}, false, {})
+]]
