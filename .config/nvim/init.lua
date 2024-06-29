@@ -1000,9 +1000,15 @@ vim.cmd [[
 ]]
 vim.api.nvim_set_keymap('n', '<leader>m', ':call quickui#menu#open()<CR>', { noremap = true })
 
---
+-- Auto-switch back to Normal mode after inactivity timeout in Insert mode
 vim.opt.updatetime = 10000 -- Set updatetime to 10000ms (10 seconds)
 vim.cmd [[
   autocmd CursorHoldI * stopinsert
   autocmd CursorHoldI * lua vim.api.nvim_echo({{'Switched to Normal mode due to inactivity in Insert mode', 'Highlight'}}, false, {})
 ]]
+
+-- Map <Esc> to toggle between normal and insert mode
+vim.api.nvim_set_keymap('n', '<Esc>', ':startinsert<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<Esc>', '<C-o>:stopinsert<CR>', { noremap = true, silent = true })
+
+vim.opt.conceallevel = 2

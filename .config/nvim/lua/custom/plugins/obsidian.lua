@@ -43,7 +43,7 @@ return {
         suffix = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
       else
         -- If title is nil, just add 4 random uppercase letters to the suffix.
-        for _ = 1, 6 do
+        for _ = 1, 8 do
           suffix = suffix .. string.char(math.random(65, 90))
         end
       end
