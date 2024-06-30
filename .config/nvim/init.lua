@@ -1012,3 +1012,5 @@ vim.api.nvim_set_keymap('n', '<Esc>', ':startinsert<CR>', { noremap = true, sile
 vim.api.nvim_set_keymap('i', '<Esc>', '<C-o>:stopinsert<CR>', { noremap = true, silent = true })
 
 vim.opt.conceallevel = 2
+
+vim.opt.langmap='ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz,Ж:'
