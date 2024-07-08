@@ -142,11 +142,7 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles_config/ --work-tree=$HOME
 export EDITOR="nvim"
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
-
-# Git
-alias gl='git log --oneline --graph'
-
-# Load the specified session if not in Tmux, otherwise explain issue
+# Custom-Load the specified session if not in Tmux, otherwise explain issue
 tmuxifier_smart_load() {
     local session_name="$1"
 
@@ -158,6 +154,9 @@ tmuxifier_smart_load() {
         echo "Do not create new Tmuxifier sessions inside Tmux."
     fi
 }
+
+# Git
+alias gl='git log --oneline --graph'
 
 # -------------------------------------------
 # -------------------------------------------
