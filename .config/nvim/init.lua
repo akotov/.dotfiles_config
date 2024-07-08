@@ -1023,3 +1023,40 @@ vim.opt.conceallevel = 2
 
 vim.opt.langmap =
   'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz,Ж:'
+
+-- Autosave Tiemr
+-- Function to save the current buffer
+local function autosave()
+  if vim.bo.modified then
+    vim.cmd 'write'
+  end
+end
+
+-- Timer handle
+local autosave_timer = nil
+
+-- Function to reset the timer
+local function reset_autosave_timer()
+  if autosave_timer ~= nil then
+    vim.fn.timer_stop(autosave_timer)
+  end
+
+  -- Set the timer to trigger after 10 seconds (10000 ms)
+  autosave_timer = vim.fn.timer_start(10000, autosave)
+end
+
+-- Set up autocommands to reset the timer on InsertCharPre and InsertLeave events
+vim.api.nvim_create_autocmd({ 'InsertCharPre', 'InsertLeave' }, {
+  pattern = '*',
+  callback = reset_autosave_timer,
+})
+
+-- Initialize the timer when entering insert mode
+vim.api.nvim_create_autocmd('InsertEnter', {
+  pattern = '*',
+  callback = reset_autosave_timer,
+})
+
+-- cmdheight
+
+vim.o.cmdheight = 3

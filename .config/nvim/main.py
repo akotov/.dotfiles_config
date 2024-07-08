@@ -10,3 +10,5 @@ def main(a, b) -> None:
     }
     foo["baz"]  # 3
     return 1 + "{}".format(1)
+
+    asdfljk
