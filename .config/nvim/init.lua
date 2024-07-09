@@ -607,7 +607,11 @@ require('lazy').setup({
       --    :Mason
       --
       --  You can press `g?` for help in this menu.
-      require('mason').setup()
+      require('mason').setup {
+        pip = {
+          upgrade_pip = false,
+        },
+      }
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
@@ -1028,7 +1032,7 @@ vim.opt.langmap =
 -- Function to save the current buffer
 local function autosave()
   if vim.bo.modified then
-    vim.cmd 'write'
+    vim.cmd 'wa'
   end
 end
 
