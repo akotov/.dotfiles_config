@@ -1068,3 +1068,5 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 -- cmdheight
 
 vim.o.cmdheight = 1
+
+require('lspconfig').ruff.setup {} -- manual lsp setup without mason
