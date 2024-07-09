@@ -1063,4 +1063,4 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 
 -- cmdheight
 
-vim.o.cmdheight = 3
+vim.o.cmdheight = 1
