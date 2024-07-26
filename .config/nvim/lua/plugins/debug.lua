@@ -22,11 +22,12 @@ return {
     'jay-babu/mason-nvim-dap.nvim',
 
     -- Add your own debuggers here
-    'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python',
   },
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
+    local dappython = require 'dap-python'
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
@@ -41,16 +42,21 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
+        'python',
       },
     }
 
     -- Basic debugging keymaps, feel free to change to your liking!
-    vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
-    vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
-    vim.keymap.set('n', '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
-    vim.keymap.set('n', '<F3>', dap.step_out, { desc = 'Debug: Step Out' })
-    vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
+    vim.keymap.set('n', '<leader>dd', dap.continue, { desc = 'Debug: Start/Continue Debug' })
+    vim.keymap.set('n', '<leader>ds', function() end, { desc = 'Debug: Step ...' })
+    vim.keymap.set('n', '<leader>dsi', dap.step_into, { desc = 'Debug: Step Into' })
+    vim.keymap.set('n', '<leader>dso', dap.step_over, { desc = 'Debug: Step Over' })
+    vim.keymap.set('n', '<leader>dsq', dap.step_out, { desc = 'Debug: Step Out/Quit' })
+
+    vim.keymap.set('n', '<leader>dc', dapui.close, { desc = 'Debug: UI: Close' })
+    vim.keymap.set('n', '<leader>do', dapui.open, { desc = 'Debug: UI: Open' })
+
+    vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
     vim.keymap.set('n', '<leader>B', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set Breakpoint' })
@@ -64,15 +70,15 @@ return {
       icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
       controls = {
         icons = {
-          pause = '⏸',
-          play = '▶',
-          step_into = '⏎',
-          step_over = '⏭',
-          step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
+          pause = 'pause',
+          play = 'play',
+          step_into = 'into',
+          step_over = 'over',
+          step_out = 'out',
+          step_back = 'back',
+          run_last = 'run_last',
+          terminate = 'terminate',
+          disconnect = 'disconnect',
         },
       },
     }
@@ -81,16 +87,33 @@ return {
     vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-    dap.listeners.before.event_exited['dapui_config'] = dapui.close
+    -- dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+    -- dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
-    -- Install golang specific config
-    require('dap-go').setup {
-      delve = {
-        -- On Windows delve must be run attached or it crashes.
-        -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-        detached = vim.fn.has 'win32' == 0,
-      },
-    }
+    --  PYTHON SPECIFIC
+    require("dap-python").setup("python")
+
+    local test_runners = require('dap-python').test_runners
+    -- `test_runners` is a table. The keys are the runner names like `unittest` or `pytest`.
+    -- The value is a function that takes two arguments:
+    -- The classnames and a methodname
+    -- The function must return a module name and the arguments passed to the module as list.
+
+    ---@param classnames string[]
+    ---@param methodname string?
+    test_runners.your_runner = function(classnames, methodname)
+      local path = table.concat({
+        table.concat(classnames, ":"),
+        methodname,
+      }, "::")
+      return 'modulename', { "-s", path }
+    end
+
+    print('test_runners:', vim.inspect(test_runners))
+
+    vim.keymap.set('n', '<leader>dtm', dappython.test_method, { desc = 'DAP-Python: Test Method' })
+    vim.keymap.set('n', '<leader>dtc', dappython.test_class, { desc = 'DAP-Python: Test Class' })
+    -- vim.keymap.set('n', '<leader>dsq', dap.step_out, { desc = 'Debug: Step Out/Quit' })
+    -- end of configure
   end,
 }
