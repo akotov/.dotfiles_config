@@ -1,5 +1,11 @@
+--
+-- Place for remapped shortcuts
+
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
+vim.keymap.set("n", "<leader>p", vim.cmd.Ex, { desc = "Project ..." })
+
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Project View" })
 
 -- ?
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<СR>')

@@ -1,3 +1,8 @@
+--
+-- Custom settings (properties)
+-- Custom behaviour
+--
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.number = true
@@ -75,7 +80,7 @@ vim.cmd [[
 vim.opt.conceallevel = 2
 
 vim.opt.langmap =
-  'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz,Ж:'
+'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz,Ж:'
 
 -- Autosave Tiemr
 -- Function to save the current buffer
@@ -113,4 +118,3 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 -- cmdheight
 
 vim.o.cmdheight = 2
-

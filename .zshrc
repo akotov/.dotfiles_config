@@ -165,3 +165,5 @@ alias gl='git log --oneline --graph'
 # Source private configs
 source ~/.zshrc.private.personal
 source ~/.zshrc.private.work
+
+alias tm='tmuxifier load-session '

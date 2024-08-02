@@ -48,10 +48,9 @@ return {
 
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set('n', '<leader>dd', dap.continue, { desc = 'Debug: Start/Continue Debug' })
-    vim.keymap.set('n', '<leader>ds', function() end, { desc = 'Debug: Step ...' })
-    vim.keymap.set('n', '<leader>dsi', dap.step_into, { desc = 'Debug: Step Into' })
-    vim.keymap.set('n', '<leader>dso', dap.step_over, { desc = 'Debug: Step Over' })
-    vim.keymap.set('n', '<leader>dsq', dap.step_out, { desc = 'Debug: Step Out/Quit' })
+    vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Debug: Step Into' })
+    vim.keymap.set('n', '<leader>do', dap.step_over, { desc = 'Debug: Step Over' })
+    vim.keymap.set('n', '<leader>dso', dap.step_out, { desc = 'Debug: Step Out/Quit' })
 
     vim.keymap.set('n', '<leader>dc', dapui.close, { desc = 'Debug: UI: Close' })
     vim.keymap.set('n', '<leader>do', dapui.open, { desc = 'Debug: UI: Open' })
@@ -93,6 +92,7 @@ return {
     --  PYTHON SPECIFIC
     require("dap-python").setup("python")
 
+    -- require('dap-python').test_runners = {}
     local test_runners = require('dap-python').test_runners
     -- `test_runners` is a table. The keys are the runner names like `unittest` or `pytest`.
     -- The value is a function that takes two arguments:
@@ -101,19 +101,26 @@ return {
 
     ---@param classnames string[]
     ---@param methodname string?
-    test_runners.your_runner = function(classnames, methodname)
-      local path = table.concat({
-        table.concat(classnames, ":"),
-        methodname,
-      }, "::")
-      return 'modulename', { "-s", path }
+    test_runners.pytest2 = function(classnames, methodname)
+      print("inside test_runner.pytest", vim.inspect(classnames), vim.inspect(methodname))
+
+      local path = ""
+      if #classnames > 0 then
+        path = table.concat({
+          table.concat(classnames, ":"),
+          methodname,
+        }, "::")
+      else
+        path = methodname
+      end
+
+      return 'pytest', { "-s", "-v", "--log-level=20", path }
     end
 
     print('test_runners:', vim.inspect(test_runners))
 
     vim.keymap.set('n', '<leader>dtm', dappython.test_method, { desc = 'DAP-Python: Test Method' })
     vim.keymap.set('n', '<leader>dtc', dappython.test_class, { desc = 'DAP-Python: Test Class' })
-    -- vim.keymap.set('n', '<leader>dsq', dap.step_out, { desc = 'Debug: Step Out/Quit' })
     -- end of configure
   end,
 }
