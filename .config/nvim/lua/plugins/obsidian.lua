@@ -28,6 +28,10 @@ return {
       },
     },
 
+    ui = {
+      enable = false
+    },
+
     -- see below for full list of options 👇
     -- -- Optional, customize how note IDs are generated given an optional title.
     ---@param title string|?

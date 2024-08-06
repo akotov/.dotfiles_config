@@ -77,7 +77,7 @@ vim.cmd [[
 ]]
 
 
-vim.opt.conceallevel = 2
+vim.opt.conceallevel = 1
 
 vim.opt.langmap =
 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz,Ж:'
@@ -118,3 +118,10 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 -- cmdheight
 
 vim.o.cmdheight = 2
+
+
+vim.o.guicursor = table.concat({
+  "n-v-c:block-Cursor/lCursor",
+  "i-ci:ver25-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100",
+  "r:hor50-Cursor/lCursor"
+}, ",")
