@@ -168,4 +168,4 @@ source ~/.zshrc.private.work
 
 alias tm='tmuxifier load-session '
 
-alias nvim='nvim $(fzf)'
+alias n='nvim $(fzf)'
