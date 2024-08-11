@@ -117,7 +117,7 @@ return {
       return 'pytest', { "-s", "-v", "--log-level=20", path }
     end
 
-    print('test_runners:', vim.inspect(test_runners))
+    -- print('test_runners:', vim.inspect(test_runners))
 
     vim.keymap.set('n', '<leader>dtm', dappython.test_method, { desc = 'DAP-Python: Test Method' })
     vim.keymap.set('n', '<leader>dtc', dappython.test_class, { desc = 'DAP-Python: Test Class' })

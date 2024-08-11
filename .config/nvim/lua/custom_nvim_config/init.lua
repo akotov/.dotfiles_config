@@ -1,7 +1,7 @@
-print("Initializing custom Neovim config")
+-- print("Initializing custom Neovim config")
 
 require("custom_nvim_config.default")
-print("Defaults loaded")
+-- print("Defaults loaded")
 
 require("custom_nvim_config.remap")
-print("Remapped")
+-- print("Remapped")

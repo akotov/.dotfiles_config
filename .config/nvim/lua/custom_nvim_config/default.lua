@@ -56,8 +56,6 @@ vim.opt.scrolloff = 2
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 
-print(123)
-
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -125,3 +123,26 @@ vim.o.guicursor = table.concat({
   "i-ci:ver25-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100",
   "r:hor50-Cursor/lCursor"
 }, ",")
+
+
+--- Ricing Netrw this mega file tree
+-- Set Netrw to open in a vertical split
+vim.g.netrw_browse_split = 2
+
+-- Hide banner
+vim.g.netrw_banner = 0
+
+-- Set the width of the Netrw window
+vim.g.netrw_winsize = 65
+
+-- Enable tree-style listing
+vim.g.netrw_liststyle = 3
+
+-- Sort directories first
+vim.g.netrw_sort_sequence = '[\\/]*$,*'
+
+-- Disable preview window
+vim.g.netrw_preview = 0
+
+-- Set the default directory view to tree view
+vim.g.netrw_altv = 1

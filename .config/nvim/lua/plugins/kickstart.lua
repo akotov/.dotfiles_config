@@ -629,6 +629,7 @@ return {
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+      require('mini.diff').setup()
     end,
   },
   { -- Highlight, edit, and navigate code

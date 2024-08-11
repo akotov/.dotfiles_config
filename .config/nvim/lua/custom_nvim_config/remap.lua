@@ -36,3 +36,27 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+
+
+local function open_csv_in_csvlens_thru_new_tmux_pane()
+  local current_file_path = vim.fn.expand('%:p')
+  print("Opening " .. current_file_path .. " in another `tmux pane` using `csvlens`")
+
+  local command = 'tmux split-window -h "csvlens ' .. current_file_path .. '"'
+  os.execute(command)
+end
+
+local function open_csv_in_csvlens_thru_new_tmux_window()
+  local current_file_path = vim.fn.expand('%:p')
+  print("Opening " .. current_file_path .. " in another `tmux pane` using `csvlens`")
+
+  -- local command = 'tmux new-window "csvlens ' .. current_file_path .. '"'
+  local command = 'tmux new-window "zsh -c \\"csvlens ' .. current_file_path .. '\\""'
+  os.execute(command)
+end
+
+vim.keymap.set('n', '<leader>csv', open_csv_in_csvlens_thru_new_tmux_pane,
+  { desc = 'Open current CSV file using `csvlens`' })
+vim.keymap.set('n', '<leader>csw', open_csv_in_csvlens_thru_new_tmux_window,
+  { desc = 'Open current CSV file using `csvlens`' })

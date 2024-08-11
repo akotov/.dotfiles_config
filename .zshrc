@@ -167,3 +167,5 @@ source ~/.zshrc.private.personal
 source ~/.zshrc.private.work
 
 alias tm='tmuxifier load-session '
+
+alias nvim='nvim $(fzf)'
