@@ -51,7 +51,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 2
+vim.opt.scrolloff = 5
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
@@ -127,7 +127,7 @@ vim.o.guicursor = table.concat({
 
 --- Ricing Netrw this mega file tree
 -- Set Netrw to open in a vertical split
-vim.g.netrw_browse_split = 2
+vim.g.netrw_browse_split = 3
 
 -- Hide banner
 vim.g.netrw_banner = 0
