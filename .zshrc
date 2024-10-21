@@ -169,3 +169,5 @@ source ~/.zshrc.private.work
 alias tm='tmuxifier load-session '
 
 alias n='nvim $(fzf)'
+
+export FZF_DEFAULT_OPTS="--height=70% --layout=reverse --info=inline --border --margin=1 --padding=1"
