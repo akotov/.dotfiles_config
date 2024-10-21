@@ -127,7 +127,7 @@ vim.o.guicursor = table.concat({
 
 --- Ricing Netrw this mega file tree
 -- Set Netrw to open in a vertical split
-vim.g.netrw_browse_split = 3
+vim.g.netrw_browse_split = 0
 
 -- Hide banner
 vim.g.netrw_banner = 0

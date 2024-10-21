@@ -3,7 +3,14 @@
 
 vim.g.mapleader = " "
 
+-- FIRST LEVEL
+vim.keymap.set("n", "<leader>a", vim.cmd.Ex, { desc = "AI ..." })
 vim.keymap.set("n", "<leader>p", vim.cmd.Ex, { desc = "Project ..." })
+
+-- SECOND LEVEL
+vim.keymap.set("n", "<leader>at", vim.cmd.Ex, { desc = "AI Text ..." })
+vim.keymap.set("n", "<leader>ac", vim.cmd.Ex, { desc = "AI Code ..." })
+vim.keymap.set("n", "<leader>ar", vim.cmd.Ex, { desc = "AI Render ..." })
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Project View" })
 
@@ -60,3 +67,17 @@ vim.keymap.set('n', '<leader>csv', open_csv_in_csvlens_thru_new_tmux_pane,
   { desc = 'Open current CSV file using `csvlens`' })
 vim.keymap.set('n', '<leader>csw', open_csv_in_csvlens_thru_new_tmux_window,
   { desc = 'Open current CSV file using `csvlens`' })
+
+-- THIRD LEVEL
+-- gen.nvim
+vim.keymap.set('v', '<leader>ats', ':Gen ai_text_spelling<CR>')
+vim.keymap.set('v', '<leader>atw', ':Gen ai_text_wording<CR>')
+vim.keymap.set('v', '<leader>atc', ':Gen ai_text_concise<CR>')
+vim.keymap.set('v', '<leader>acr', ':Gen ai_code_review<CR>')
+vim.keymap.set('v', '<leader>ace', ':Gen ai_code_enhance<CR>')
+vim.keymap.set('v', '<leader>acc', ':Gen ai_code_change<CR>')
+vim.keymap.set('v', '<leader>arj', ':Gen ai_render_json<CR>')
+vim.keymap.set('v', '<leader>arc', ':Gen ai_render_csv<CR>')
+vim.keymap.set('v', '<leader>arj', ':Gen ai_render_json<CR>')
+vim.keymap.set('v', '<leader>arl', ':Gen ai_render_markdown_list<CR>')
+vim.keymap.set('v', '<leader>art', ':Gen ai_render_markdown_table<CR>')
