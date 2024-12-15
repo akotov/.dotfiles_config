@@ -1,5 +1,15 @@
 require('gen').prompts = {
   -- text operations
+  ai_text_synonyms = {
+    prompt =
+    "Provide in a list form synonyms for the whole text: \n$text",
+    replace = false,
+  },
+  ai_text_define_as_one_word = {
+    prompt =
+    "Provide in a list form. Define as a one word the whole text: \n$text",
+    replace = false,
+  },
   ai_text_spelling = {
     prompt =
     "Modify the following text to improve grammar and spelling, just output the final text without additional quotes around it:\n$text",
