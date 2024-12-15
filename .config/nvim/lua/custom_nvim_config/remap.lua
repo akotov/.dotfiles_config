@@ -73,6 +73,10 @@ vim.keymap.set('n', '<leader>csw', open_csv_in_csvlens_thru_new_tmux_window,
 vim.keymap.set('v', '<leader>ats', ':Gen ai_text_spelling<CR>')
 vim.keymap.set('v', '<leader>atw', ':Gen ai_text_wording<CR>')
 vim.keymap.set('v', '<leader>atc', ':Gen ai_text_concise<CR>')
+vim.keymap.set('v', '<leader>ats', ':Gen ai_text_synonyms<CR>')
+vim.keymap.set('v', '<leader>atd', ':Gen ai_text_define_as_one_word<CR>')
+
+
 vim.keymap.set('v', '<leader>acr', ':Gen ai_code_review<CR>')
 vim.keymap.set('v', '<leader>ace', ':Gen ai_code_enhance<CR>')
 vim.keymap.set('v', '<leader>acc', ':Gen ai_code_change<CR>')
