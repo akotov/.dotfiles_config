@@ -7,3 +7,14 @@ if vim.fn.maparg(ollama_lhs, "n") == "" then
     require("config.ollama").ask()
   end, { desc = "Ask Ollama about current file" })
 end
+
+vim.keymap.set("n", "<leader>cA", function()
+  vim.g.cmp_enabled = vim.g.cmp_enabled == false
+  if not vim.g.cmp_enabled then
+    local ok, blink = pcall(require, "blink.cmp")
+    if ok then
+      blink.hide()
+    end
+  end
+  vim.notify("Autocomplete " .. (vim.g.cmp_enabled and "enabled" or "disabled"))
+end, { desc = "Toggle autocomplete" })
