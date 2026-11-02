@@ -15,6 +15,12 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles_config/ --work-tree=$HOME
 
 # Personal shell preferences
 export EDITOR="nvim"
+# Ctrl-D normally sends EOF at an empty prompt.  IGNORE_EOF only delays that
+# exit after repeated presses, so make Ctrl-D a no-op in the line editor.
+setopt IGNORE_EOF
+zle -N ignore-eof
+ignore-eof() {}
+bindkey '^D' ignore-eof
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 
 if command -v tmuxifier >/dev/null 2>&1; then
