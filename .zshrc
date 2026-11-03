@@ -3,7 +3,7 @@ export VAULT_ADDR="https://vault.adjust.com"
 source ~/.ssh/ssh_helper.sh
 
 # Alias for ics_combine command
-alias gen_cal="~/SYNCTHING_FOLDER/binaries/ics_combine ~/SYNCTHING_FOLDER/notes/me/calendar/"
+alias gen_cal="~/SYNCTHING_FOLDER/binaries/ics_combine ~/SYNCTHING_FOLDER/calendar/"
 
 # OpenCode host client connected to the Docker deployment.
 export PATH="/Users/alko/src/opencode/opencode_in_docker/bin:$PATH"
