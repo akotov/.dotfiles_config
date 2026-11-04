@@ -1,6 +1,15 @@
 return {
   {
     "folke/snacks.nvim",
+    keys = {
+      {
+        "<leader>t",
+        function()
+          Snacks.explorer({ cwd = LazyVim.root() })
+        end,
+        desc = "File Tree (root dir)",
+      },
+    },
     opts = {
       picker = {
         sources = {
