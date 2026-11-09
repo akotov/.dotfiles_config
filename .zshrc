@@ -45,3 +45,20 @@ export FZF_DEFAULT_OPTS="--height=70% --layout=reverse --info=inline --border --
 # Optional machine-specific settings.
 [ -f ~/.zshrc.private.personal ] && source ~/.zshrc.private.personal
 [ -f ~/.zshrc.private.work ] && source ~/.zshrc.private.work
+
+echo "\n"
+echo "nf - notes_find - find a token in notes"
+echo "\n"
+
+nf() {
+  local TAG="$1"
+  local case_flag=(-i)
+
+  [[ "$2" == "-s" ]] && case_flag=()
+
+  find . -type f -not -path '*/.*' -print0 |
+    while IFS= read -r -d '' f; do
+      [[ "${f:l}" == *"${TAG:l}"* ]] && [[ "$2" != "-s" ]] ||
+        rg -IqF "${case_flag[@]}" -- "$TAG" "$f" && echo "$f"
+    done
+}
